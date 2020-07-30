@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<div class="container">
+	<h2 style="text-align:center">TrainIt - Train your own Machine</h2>
+	<br>
+	<p>
+		TrainIt is a cool project which lets you experience the working of Deep Learning on the website itself. You can train my model with upto 5 different classes of your choice by giving input directly through your webcam!<br><br>
+		You can generate as many samples as you like with webcam and use it to train the model and then get live predictions.<br><br>
+		The steps are listed below:-
+	</p>
+	<ol>
+		<li>Generate as many samples as you want for each of the classes using the webcam and with help of the appropriate button for each class. I recommend taking almost equal amount of samples for each class so as to not skew the model.</li><br>
+		<li>After you are finished taking the samples, click on train the model button and wait for the model to be trained. You will be notified once training is complete. It won't take more than a few seconds but can take upto a minute depending on number of samples.</li><br>
+		<li>Once the training is complete, you can click on Start Predicting button to start the predictions. Then whatever is seen through the webcam is being classified and displayed in the browser in real time. Please try only the trained classes otherwise the model will give any output which matches any of the classes.</li><br>
+		<li>Once you are done predicting, click on Stop Predicting button to stop the predictions.</li><br>
+	</ol>
+	<p>To use our model for having fun with Machine Learning, please move to <a href="/train">Train Your Machine Now!</a></p>
+	<p>
+		For students who are interested in the source code of this full website, we recommend you to visit the <a href="https://github.com/shubham1710/Train-It">GitHub Repository</a>.<br><br>Feel free to contribute to the repository to add features or just make it better!
+	</p>
+	<p>Connect with me on LinkedIn at <a href="https://www.linkedin.com/in/shubham1710/">this link</a>.</p>
+</div>
+{% endblock content %}

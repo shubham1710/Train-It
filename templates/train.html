@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='footer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='navigation.css') }}">
+    {% if current_user.is_authenticated %}
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+	<script src="{{url_for('static', filename='webcam.js')}}"></script>
+	<script src="{{url_for('static', filename='dataset.js')}}"></script>
+	{% endif %}
+    {% if title %}
+        <title>TrainIt - {{ title }}</title>
+    {% else %}
+        <title>TrainIt</title>
+    {% endif %}
+</head>
+<body>
+	<nav class="navbar navbar-light navbar-expand-md text-white bg-dark navigation-clean-button">
+        <div class="container"><a class="navbar-brand text-light" href="#">TrainIt</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item text-white" role="presentation"><a class="nav-link text-white" href="/">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-white" href="/train">Start Training</a></li>
+                </ul>
+                <span class="navbar-text actions">
+                    {% if not current_user.is_authenticated %}
+                    <a class="text-light login" href="/login">Log In</a>
+                    <a class="btn btn-light action-button" role="button" href="/signup">Sign Up</a>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <a class="btn btn-light action-button" role="button" href="/logout">LogOut</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+		<h2 style="text-align:center">Train your Machine Now!</h2>
+		<br>
+		{% if not current_user.is_authenticated %}
+		<p style="text-align:center">Please <a href="/login">Login</a> or <a href="/signup">SignUp</a> to start the training!</p>
+		{% endif %}
+		{% if current_user.is_authenticated %}
+		<div>
+			<video autoplay playsinline muted id="wc" width="800" height="480"></video>
+		</div>
+		<br>
+		<button type="button" id="0" class="btn btn-primary mr-2" onclick="handleButton(this)" >Class 1</button>
+		<button type="button" id="1" class="btn btn-primary mr-2" onclick="handleButton(this)" >Class 2</button>
+		<button type="button" id="2" class="btn btn-primary mr-2" onclick="handleButton(this)" >Class 3</button>
+		<button type="button" id="3" class="btn btn-primary mr-2" onclick="handleButton(this)" >Class 4</button>
+		<button type="button" id="4" class="btn btn-primary" onclick="handleButton(this)" >Class 5</button>
+		<br><br>
+		<div id="class1">Class 1 Samples: </div><br>
+		<div id="class2">Class 2 Samples: </div><br>
+		<div id="class3">Class 3 Samples: </div><br>
+		<div id="class4">Class 4 Samples: </div><br>
+		<div id="class5">Class 5 Samples: </div><br>
+		<button type="button" class="btn btn-info" id="train" onclick="doTraining()" >Train Network</button><br><br>
+		<div id="dummy">Once training is complete, click 'Start Predicting' to see predictions, and 'Stop Predicting' to end.</div><br>
+		<button type="button" class="btn btn-success mr-2" id="startPredicting" onclick="startPredicting()" >Start Predicting</button>
+		<button type="button" class="btn btn-danger" id="stopPredicting" onclick="stopPredicting()" >Stop Predicting</button><br>
+		<br><br>
+		<h4><b><div id="prediction">Prediction: </div></b></h4><br><br>
+		<p>
+			For students who are interested in the source code of this full website, we recommend you to visit the <a href="https://github.com/shubham1710/Train-It">GitHub Repository</a>.<br><br>Feel free to contribute to the repository to add features or just make it better!
+		</p>
+		<p>Connect with me on LinkedIn at <a href="https://www.linkedin.com/in/shubham1710/">this link</a>.</p>
+		{% endif %}
+	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+<script src="{{url_for('static', filename='classify.js')}}"></script>
+</html>
