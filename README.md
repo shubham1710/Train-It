@@ -5,4 +5,4 @@ Made with Tensorflow js and it uses transfer learning using the MobileNet Model.
 
 The website has been deployed using Flask Framework which handles the login and signup events and changes the content based on authentication status of the user. It also deploys all the HTML pages.
 
-Go on this link to test the model: 
+Go on this link to test the model: http://shubham1710.pythonanywhere.com/
